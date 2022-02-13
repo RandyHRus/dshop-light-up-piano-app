@@ -23,12 +23,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "package": "com.dshop.lightuppianoapp",
-        "versionCode": 1,
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.dshop.lightuppianoapp"
+      "package": "com.dshop.lightuppianoapp",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
