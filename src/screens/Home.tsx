@@ -4,26 +4,29 @@ import Card from "../components/Card";
 import Screen from "../components/Screen";
 import Text from "../components/Text";
 
+const titleIcon = require("../../assets/LightUpPiano_logo.png");
 const gradientImage = require("../../assets/gradientBackground.jpg");
 const songSelectionIcon = require("../../assets/Icons_SongSelection.png");
 const freeplayModeIcon = require("../../assets/Icons_FreeplayMode.png");
 
 const Home = () => (
   <Screen backgroundImage={gradientImage}>
-    <View style={styles.titleContainer}>
-      <Text>D-SHOP</Text>
-      <Text>LIGHT UP PIANO</Text>
-    </View>
     <View style={styles.container}>
       <View style={styles.leftContainer}>
-        <View style={styles.iconLayout}>
-          <Image style={styles.icon} source={songSelectionIcon} />
-          <Text>Song Selection</Text>
+        <View style={styles.titleContainer}>
+          <Image style={styles.titleIcon} source={titleIcon} />
         </View>
 
-        <View style={styles.iconLayout}>
-          <Image style={styles.icon} source={freeplayModeIcon} />
-          <Text>Freeplay Mode</Text>
+        <View style={styles.menuLayout}>
+          <View style={styles.iconLayout}>
+            <Image style={styles.icon} source={songSelectionIcon} />
+            <Text>Song Selection</Text>
+          </View>
+
+          <View style={styles.iconLayout}>
+            <Image style={styles.icon} source={freeplayModeIcon} />
+            <Text>Freeplay Mode</Text>
+          </View>
         </View>
       </View>
 
@@ -46,40 +49,43 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  titleContainer: {},
   container: {
     flexDirection: "row",
     flex: 1,
-    justifyContent: "space-between",
-    margin: "0 0 1em 0",
-    padding: "1em",
-    border: " 1px solid black",
+    // margin: "0 0 2em 0",
+    padding: "2em",
   },
   leftContainer: {
     display: "flex",
+    flex: 3,
+    flexDirection: "column",
+  },
+  titleContainer: { alignSelf: "flex-start", border: "1px solid black" },
+  titleIcon: { flex: 1, width: 350, height: 100, resizeMode: "contain" },
+  menuLayout: {
     flexDirection: "row",
-    justifyContent: "center",
+    flex: 1,
+    border: "1px solid black",
     alignItems: "center",
-    paddingHorizontal: "10vw",
+    justifyContent: "center",
   },
   iconLayout: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     height: 200,
-    marginRight: "10vw",
     padding: "1em",
-    // border: " 1px solid black",
   },
   icon: {
     flex: 1,
     width: 125,
     height: 125,
     resizeMode: "contain",
+    border: "1px solid black",
   },
   rightContainer: { flex: 1, margin: "45px" },
-  productDetails: { lineHeight: 30, padding: "15px" },
+  productDetails: { lineHeight: 40, padding: "15px" },
   bold: {
     fontWeight: "700",
     lineHeight: 30,
