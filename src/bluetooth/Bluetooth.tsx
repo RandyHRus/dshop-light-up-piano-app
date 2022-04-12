@@ -2,9 +2,16 @@ import { assert } from "console";
 import React from "react";
 import { useEffect } from "react";
 import { View } from "react-native";
-import { BleManager, Device } from "react-native-ble-plx";
+import {
+    BleError,
+    BleManager,
+    Characteristic,
+    Device,
+} from "react-native-ble-plx";
 
-const pianoBluetoothName = "tempName";
+const pianoBluetoothName = "raspberrypi";
+const serviceUUID = "00001108-0000-1000-8000-00805f9b34fb";
+const characteristicUUID = "00001108-0000-1000-8000-00805f9b34fb";
 
 export default function Bluetooth() {
     let manager: BleManager;
@@ -34,6 +41,7 @@ export default function Bluetooth() {
                 return;
             }
 
+            console.log(device);
             if (device && device.name) console.log(device.name);
 
             if (device?.name === pianoBluetoothName) {
@@ -56,6 +64,7 @@ export default function Bluetooth() {
             .then((device) => {
                 console.log("Retrieved services and characteristics of device");
                 console.log(device);
+                StartReadData(d);
             })
             .catch((error) => {
                 console.error("Error while connecting to device");
@@ -65,11 +74,23 @@ export default function Bluetooth() {
             });
     }
 
-    function SendData() {
-        //manager.read("aa");
+    function SendData() {}
+
+    function StartReadData(d: Device) {
+        manager.monitorCharacteristicForDevice(
+            d.id,
+            serviceUUID,
+            characteristicUUID,
+            OnMonitorDataReceived
+        );
     }
 
-    function ReadData() {}
+    function OnMonitorDataReceived(
+        error: BleError | null,
+        characteristic: Characteristic | null
+    ) {
+        console.log("Data received: " + characteristic?.read());
+    }
 
     return null;
 }
