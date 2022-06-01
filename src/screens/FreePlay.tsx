@@ -1,16 +1,37 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, ImageBackground } from "react-native";
+import {
+    View,
+    StyleSheet,
+    Image,
+    ImageBackground,
+    TouchableOpacity,
+} from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import Text from "../components/Text";
 
 const gradientImage = require("../../assets/gradientBackground.jpg");
+const backButtonIcon = require("../../assets/backButton.png");
 
-function FreePlay(props: any) {
+interface HomeScreenProps {
+    navigation: any;
+}
+
+function FreePlay(props: HomeScreenProps) {
     const [displayedNote, setDisplayedNote] = useState("D");
 
+    const onClickBackButton = () => {
+        console.log(JSON.stringify(props));
+        setDisplayedNote("E");
+        props.navigation.navigate("Home");
+    };
+    //props.navigation.navigate("Home");
     return (
         <Screen backgroundImage={gradientImage}>
+            <TouchableOpacity onPress={onClickBackButton}>
+                <Image style={styles.backButton} source={backButtonIcon} />
+            </TouchableOpacity>
+
             <View style={styles.container}>
                 <Text style={styles.modeText}>Freeplay Mode</Text>
                 <View style={styles.noteContainer}>
@@ -47,6 +68,12 @@ const styles = StyleSheet.create({
         fontFamily: "Nunito",
         fontSize: 24,
         fontWeight: "bold",
+    },
+    backButton: {
+        width: 9,
+        height: 18,
+        top: 85,
+        left: 66,
     },
 });
 
