@@ -13,12 +13,15 @@ import Text from "../components/Text";
 const gradientImage = require("../../assets/gradientBackground.jpg");
 const backButtonIcon = require("../../assets/backButton.png");
 
-interface HomeScreenProps {
+interface FreePlayProps {
     navigation: any;
 }
 
-function FreePlay(props: HomeScreenProps) {
+function FreePlay(props: FreePlayProps) {
     const [displayedNote, setDisplayedNote] = useState("D");
+    console.log("BBB");
+    console.log(props.navigation);
+    props.route.params.sendData("test data: ");
 
     const onClickBackButton = () => {
         console.log(JSON.stringify(props));

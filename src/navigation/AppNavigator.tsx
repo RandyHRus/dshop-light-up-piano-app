@@ -6,7 +6,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export default function AppNavigator() {
+interface AppNavigatorProps {
+    sendData: (data: string) => void;
+}
+
+export default function AppNavigator(props: AppNavigatorProps) {
     return (
         <NavigationContainer>
             <Navigator
@@ -14,7 +18,11 @@ export default function AppNavigator() {
                 screenOptions={{ headerShown: false }}
             >
                 <Screen name="Home" component={Home}></Screen>
-                <Screen name="Freeplay" component={FreePlay}></Screen>
+                <Screen
+                    name="Freeplay"
+                    component={FreePlay}
+                    initialParams={props}
+                ></Screen>
             </Navigator>
         </NavigationContainer>
     );

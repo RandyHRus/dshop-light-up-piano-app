@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Bluetooth from "./src/bluetooth/Bluetooth";
-import AppNavigator from "./src/navigation/AppNavigator";
+import SocketClient from "./src/socket.io/SocketClient";
 
 export default function App() {
     return (
         <View style={styles.container}>
             <StatusBar hidden />
-            <AppNavigator />
+            <SocketClient />
         </View>
     );
 }
