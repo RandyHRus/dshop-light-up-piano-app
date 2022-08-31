@@ -1,3 +1,5 @@
+/*
+! No longer using bluetooth.
 import { assert } from "console";
 import React from "react";
 import { useEffect } from "react";
@@ -94,3 +96,4 @@ export default function Bluetooth() {
 
     return null;
 }
+*/
